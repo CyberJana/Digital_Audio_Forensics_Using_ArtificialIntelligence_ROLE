@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#101a22">
+  <title>Audio Evidence Lab</title>
+  <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="/" aria-label="Audio Evidence Lab home"><span class="brand-mark">AE</span><span>Audio Evidence Lab<small>LOCAL FORENSIC WORKSPACE</small></span></a>
+    <span class="local-status"><i></i> LOCAL SESSION</span>
+  </header>
+  <main>
+    <section class="intro">
+      <div><p class="eyebrow">DIGITAL AUDIO EXAMINATION</p><h1>Evidence, examined carefully.</h1>
+      <p class="subhead">Preserve the original. Work from a verified copy. Treat every automated observation as a lead—not a conclusion.</p></div>
+      <div class="case-count"><strong id="evidence-count">0</strong><span>REGISTERED ITEMS</span></div>
+    </section>
+    <div class="notice"><strong>Examiner verification required</strong><span>This prototype performs signal screening only. It does not prove authenticity, manipulation, or speaker identity.</span></div>
+    <div class="workspace">
+      <section class="panel intake">
+        <div class="panel-heading"><div><p class="eyebrow">01 / ACQUISITION</p><h2>Register evidence</h2></div><span class="step-badge">01</span></div>
+        <form id="upload-form">
+          <label>Audio file <input name="file" type="file" accept=".wav,.mp3,.flac,.aac,.m4a,.ogg,audio/*" required></label>
+          <div class="form-grid">
+            <label>Case number <input name="case_number" required maxlength="100" placeholder="e.g. DF-2026-014"></label>
+            <label>Examiner <input name="examiner" required maxlength="120" placeholder="Examiner name"></label>
+          </div>
+          <label>Source / acquisition notes <input name="source" maxlength="500" placeholder="Device, media, or transfer details"></label>
+          <button class="button primary" type="submit"><span>＋</span> Preserve &amp; register</button>
+          <p class="microcopy">Original and working copy receive separate SHA-256 records. Upload limit: 100 MiB.</p>
+        </form>
+      </section>
+      <section class="panel inventory">
+        <div class="panel-heading"><div><p class="eyebrow">02 / CASE INVENTORY</p><h2>Evidence items</h2></div><button id="refresh" class="icon-button" aria-label="Refresh evidence list">↻</button></div>
+        <div id="evidence-list" class="evidence-list"><p class="empty">Loading local evidence records…</p></div>
+      </section>
+    </div>
+    <section id="detail-panel" class="panel detail hidden">
+      <div class="panel-heading"><div><p class="eyebrow">03 / EXAMINATION</p><h2 id="detail-title">Selected evidence</h2></div><div class="actions"><button id="analyze" class="button primary">Run signal screening</button><button id="report" class="button secondary">Download report</button></div></div>
+      <div id="metadata" class="metadata-grid"></div>
+      <div id="analysis-area" class="analysis-area">
+        <div class="chart-card"><h3>Waveform · 20 ms RMS</h3><canvas id="waveform" aria-label="Waveform RMS chart"></canvas></div>
+        <div class="chart-card"><h3>Average frequency spectrum · dB</h3><canvas id="spectrum" aria-label="Average spectrum chart"></canvas></div>
+        <div class="chart-card wide"><h3>Log-frequency spectrogram · dB</h3><canvas id="spectrogram" aria-label="Log-frequency spectrogram"></canvas></div>
+      </div>
+      <div class="observation-section"><h3>Automated observations</h3><div id="observations" class="observations"><p class="empty">Run screening to display measurable observations.</p></div></div>
+      <div class="observation-section"><h3>Chain-of-custody events</h3><div id="events" class="events"></div></div>
+    </section>
+    <p id="status" role="status" aria-live="polite"></p>
+  </main>
+  <footer><span>AUDIO EVIDENCE LAB · PROTOTYPE 0.1</span><span>Store case material only in an approved, access-controlled environment.</span></footer>
+  <script src="/static/app.js"></script>
+</body>
+</html>
