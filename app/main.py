@@ -102,7 +102,7 @@ def read_audio(path: Path) -> tuple[np.ndarray, int, dict]:
             raise ValueError("Decoded audio exceeds the 20 million sample analysis limit")
         samples, sample_rate = sf.read(str(path), dtype="float32", always_2d=True)
         if samples.size == 0:
-        raise ValueError("The audio contains no decodable samples")
+            raise ValueError("The audio contains no decodable samples")
         metadata = {
             "format": info.format,
             "subtype": info.subtype,
